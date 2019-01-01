@@ -7,7 +7,7 @@
     android:padding="8dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.login.LoginActivity">
+    tools:context=".ui.login.LoginActivity">
     <TextView
         android:layout_width="match_parent"
         android:text="LOGIN"
