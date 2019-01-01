@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">PgPayment</string>
+    <string-array name="faculty">
+        <item>Please Select your Faculty</item>
+        <item>Faculty of Admin</item>
+        <item>Faculty of Agriculture</item>
+        <item>Faculty of Arts</item>
+        <item>Faculty of Basic Clinical Sciences</item>
+        <item>Faculty of Clinical Sciences</item>
+        <item>Faculty of Environment and  Development Management</item>
+        <item>Faculty of Law</item>
+        <item>Faculty of Pharmacy</item>
+        <item>Faculty of Science</item>
+        <item>Faculty of Social Science</item>
+        <item>Faculty of Technology</item>
+    </string-array>
+    <string-array name="department">
+        <item>Please Select your Department</item>
+        <item>Faculty of Admin</item>
+        <item>Faculty of Agriculture</item>
+        <item>Faculty of Arts</item>
+        <item>Faculty of Basic Clinical Sciences</item>
+        <item>Faculty of Clinical Sciences</item>
+        <item>Faculty of Environment and  Development Management</item>
+        <item>Faculty of Law</item>
+        <item>Faculty of Pharmacy</item>
+        <item>Faculty of Science</item>
+        <item>Faculty of Social Science</item>
+        <item>Faculty of Technology</item>
+    </string-array>
+</resources>
