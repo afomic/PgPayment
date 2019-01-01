@@ -28,4 +28,21 @@
         <item>Faculty of Social Science</item>
         <item>Faculty of Technology</item>
     </string-array>
+    <string-array name="semester">
+        <item>Harmattan Semester</item>
+        <item>Rain Semester</item>
+    </string-array>
+    <string-array name="sections">
+        <item>2013/2014 Section</item>
+        <item>2014/2015 Section</item>
+        <item>2015/2016 Section</item>
+        <item>2016/2017 Section</item>
+        <item>2017/2018 Section</item>
+        <item>2018/2019 Section</item>
+    </string-array>
+    <string-array name="payment_types">
+        <item>Harmattan and rain Semester</item>
+        <item>Rain Semester</item>
+        <item>Harmattan Semester</item>
+    </string-array>
 </resources>

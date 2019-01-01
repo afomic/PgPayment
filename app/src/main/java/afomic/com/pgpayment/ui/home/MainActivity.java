@@ -1,4 +1,4 @@
-package afomic.com.pgpayment;
+package afomic.com.pgpayment.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MenuItem;
 
+import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {

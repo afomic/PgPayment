@@ -1,5 +1,6 @@
 package afomic.com.pgpayment;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -9,11 +10,11 @@ import afomic.com.pgpayment.ui.login.LoginView;
 import static org.mockito.Mockito.*;
 
 public class LoginUnitTest {
-    private static LoginPresenter mLoginPresenter;
-    private static LoginView mLoginView;
+    private  LoginPresenter mLoginPresenter;
+    private  LoginView mLoginView;
 
-    @BeforeClass
-    public static void setup() {
+    @Before
+    public  void setup() {
         mLoginView = mock(LoginView.class);
         mLoginPresenter = new LoginPresenter(mLoginView);
     }
