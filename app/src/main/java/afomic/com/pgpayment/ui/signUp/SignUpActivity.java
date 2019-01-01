@@ -1,7 +1,9 @@
-package afomic.com.pgpayment;
+package afomic.com.pgpayment.ui.signUp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import afomic.com.pgpayment.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
