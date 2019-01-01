@@ -28,10 +28,7 @@
         <item>Faculty of Social Science</item>
         <item>Faculty of Technology</item>
     </string-array>
-    <string-array name="semester">
-        <item>Harmattan Semester</item>
-        <item>Rain Semester</item>
-    </string-array>
+
     <string-array name="sections">
         <item>2013/2014 Section</item>
         <item>2014/2015 Section</item>

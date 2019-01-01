@@ -1,4 +1,9 @@
 package afomic.com.pgpayment.ui.paymentOverview;
 
-public interface PaymentOverviewView {
+import afomic.com.pgpayment.ui.base.BaseView;
+
+interface PaymentOverviewView extends BaseView {
+    void showPaymentView();
+
+    void notifyError(String reason);
 }
