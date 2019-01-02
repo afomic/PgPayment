@@ -38,10 +38,22 @@
             android:layout_margin="8dp">
 
             <EditText
-                android:id="@+id/edt_name"
+                android:id="@+id/edt_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Full Name" />
+                android:hint="First Name" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <EditText
+                android:id="@+id/edt_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name" />
         </android.support.design.widget.TextInputLayout>
 
 

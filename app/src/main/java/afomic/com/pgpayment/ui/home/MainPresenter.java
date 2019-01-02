@@ -1,6 +1,9 @@
 package afomic.com.pgpayment.ui.home;
 
 public class MainPresenter {
-    public MainPresenter(MainView view){
+    private MainView mMainView;
+
+    public MainPresenter(MainView view) {
+        mMainView = view;
     }
 }

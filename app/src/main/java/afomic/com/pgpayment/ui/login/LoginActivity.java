@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void intView(View view) {
+    public void intView() {
 
     }
 

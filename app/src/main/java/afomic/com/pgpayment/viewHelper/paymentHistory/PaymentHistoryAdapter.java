@@ -1,4 +1,4 @@
-package afomic.com.pgpayment.adapter;
+package afomic.com.pgpayment.viewHelper.paymentHistory;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
