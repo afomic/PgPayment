@@ -36,11 +36,10 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        intView(view);
     }
 
     @Override
-    public void intView(View view) {
+    public void intView() {
 
     }
 
@@ -51,6 +50,11 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
 
     @Override
     public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
 
     }
 

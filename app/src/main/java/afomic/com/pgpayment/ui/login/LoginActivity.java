@@ -45,4 +45,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     public void showProgress() {
 
     }
+
+    @Override
+    public void hideProgress() {
+
+    }
 }

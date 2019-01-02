@@ -6,4 +6,6 @@ public interface BaseView {
     void initListeners();
 
     void showProgress();
+
+    void hideProgress();
 }
