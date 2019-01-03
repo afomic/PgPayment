@@ -3,6 +3,7 @@ package afomic.com.pgpayment;
 import org.junit.Before;
 import org.junit.Test;
 
+import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.ui.login.LoginPresenter;
 import afomic.com.pgpayment.ui.login.LoginView;
 
@@ -14,11 +15,13 @@ import static org.mockito.Mockito.verify;
 public class LoginUnitTest {
     private LoginPresenter mLoginPresenter;
     private LoginView mLoginView;
+    private AuthManger mAuthManger;
 
     @Before
     public void setup() {
         mLoginView = mock(LoginView.class);
-        mLoginPresenter = new LoginPresenter(mLoginView);
+        mAuthManger = mock(AuthManger.class);
+        mLoginPresenter = new LoginPresenter(mLoginView, mAuthManger);
     }
 
     @Test

@@ -3,11 +3,22 @@ package afomic.com.pgpayment.helper;
 import afomic.com.pgpayment.model.User;
 
 public class AuthManger {
-    public static void login(String matricNumber, String password, AuthManagerCallback callback) {
-        callback.onSuccess(null);
+    private static AuthManger sAuthManger;
+    private AuthManger() {
+
     }
 
-    public static void signUp(User user, String password, AuthManagerCallback callback) {
+    public static AuthManger getInstance() {
+        if(sAuthManger==null){
+             sAuthManger=new AuthManger();
+        }
+        return sAuthManger;
+    }
+
+    public void login(String matricNumber, String password, AuthManagerCallback callback) {
+    }
+
+    public void signUp(User user, String password, AuthManagerCallback callback) {
 
     }
 

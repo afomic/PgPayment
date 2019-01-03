@@ -1,39 +1,48 @@
 package afomic.com.pgpayment.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import afomic.com.pgpayment.R;
+import afomic.com.pgpayment.helper.AuthManger;
+import afomic.com.pgpayment.ui.home.MainActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
     private LoginPresenter mLoginPresenter;
+    @BindView(R.id.edt_matric_number)
+    EditText matricNumberEditText;
 
-    private EditText matricNumberEditText;
-    private EditText passwordEditText;
+    @BindView(R.id.edt_password)
+    EditText passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mLoginPresenter = new LoginPresenter(this);
+        ButterKnife.bind(this);
+        mLoginPresenter = new LoginPresenter(this, AuthManger.getInstance());
     }
 
 
     @Override
     public void notifyLoginFailed(String reason) {
-
+        Toast.makeText(LoginActivity.this, reason, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showHomeView() {
-
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void intView() {
-
     }
 
     @Override
@@ -48,6 +57,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void hideProgress() {
+
+    }
+
+    @OnClick(R.id.btn_login)
+    public void loginButtonClick() {
+        String matricNumber = matricNumberEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        mLoginPresenter.loginUser(matricNumber, password);
+    }
+    @OnClick(R.id.tv_sign_up)
+    public void signUpTextClick(){
 
     }
 }

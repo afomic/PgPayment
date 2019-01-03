@@ -6,9 +6,12 @@ import afomic.com.pgpayment.model.User;
 
 public class LoginPresenter {
     private LoginView mLoginView;
+    private AuthManger mAuthManger;
 
-    public LoginPresenter(LoginView view) {
+    public LoginPresenter(LoginView view, AuthManger authManger) {
         mLoginView = view;
+        mAuthManger = authManger;
+        mLoginView.intView();
     }
 
     public void loginUser(String matricNumber, String password) {
@@ -29,7 +32,7 @@ public class LoginPresenter {
 
     private void login(final String matricNumber, String password) {
         mLoginView.showProgress();
-        AuthManger.login(matricNumber, password, new AuthManger.AuthManagerCallback() {
+        mAuthManger.login(matricNumber, password, new AuthManger.AuthManagerCallback() {
             @Override
             public void onSuccess(User user) {
                 mLoginView.hideProgress();
