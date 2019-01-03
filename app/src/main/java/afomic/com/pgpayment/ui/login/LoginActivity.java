@@ -9,6 +9,7 @@ import android.widget.Toast;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.ui.home.MainActivity;
+import afomic.com.pgpayment.ui.signUp.SignUpActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -68,6 +69,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
     @OnClick(R.id.tv_sign_up)
     public void signUpTextClick(){
+        mLoginPresenter.handleSignUpButtonClicked();
+    }
 
+    @Override
+    public void showSignUpView() {
+        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+        startActivity(intent);
     }
 }

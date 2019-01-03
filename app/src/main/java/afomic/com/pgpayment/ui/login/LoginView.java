@@ -5,4 +5,5 @@ import afomic.com.pgpayment.ui.base.BaseView;
 public interface LoginView  extends BaseView {
     void notifyLoginFailed(String reason);
     void showHomeView();
+    void showSignUpView();
 }
