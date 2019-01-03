@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -31,20 +32,44 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
 
     @Override
     public void onBindViewHolder(@NonNull PaymentHistoryViewHolder paymentHistoryViewHolder, int i) {
-
+        PaymentHistory paymentHistory = mPaymentHistories.get(i);
+        paymentHistoryViewHolder.bind(paymentHistory);
     }
 
     @Override
     public int getItemCount() {
         if (mPaymentHistories != null) {
-            mPaymentHistories.size();
+            return mPaymentHistories.size();
         }
         return 0;
     }
 
     public class PaymentHistoryViewHolder extends RecyclerView.ViewHolder {
+        private TextView transactionSectionTextView;
+        private TextView transactionIdTextView;
+        private TextView transactionAmount;
+        private TextView transactionStatusTextView;
+
         public PaymentHistoryViewHolder(@NonNull View itemView) {
             super(itemView);
+            transactionIdTextView = itemView.findViewById(R.id.tv_transaction_id);
+            transactionSectionTextView = itemView.findViewById(R.id.tv_transaction_section);
+            transactionAmount = itemView.findViewById(R.id.tv_transaction_amount);
+            transactionStatusTextView = itemView.findViewById(R.id.tv_transaction_status);
+        }
+
+        public void bind(PaymentHistory paymentHistory) {
+            if (paymentHistory.isStatus()) {
+                transactionStatusTextView.setText("Success");
+            } else {
+                transactionStatusTextView.setText("Failed");
+            }
+            String amount = "₦" + paymentHistory.getAmount();
+            transactionAmount.setText(amount);
+            transactionIdTextView.setText(paymentHistory.getTransactionId());
+            String section = paymentHistory.getTransactionId() + "Section";
+            transactionSectionTextView.setText(section);
+
         }
     }
 }

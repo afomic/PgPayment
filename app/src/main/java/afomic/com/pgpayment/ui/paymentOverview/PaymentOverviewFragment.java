@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import afomic.com.pgpayment.R;
+import afomic.com.pgpayment.model.Payment;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -19,7 +21,10 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
 
     @BindView(R.id.spn_section)
     Spinner sectionSpinner;
+
     private PaymentOverviewPresenter mPaymentOverviewPresenter;
+    private int selectedPaymentType;
+    private String selectedSection;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +50,29 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
 
     @Override
     public void initListeners() {
+        sectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String[] availableSections = getResources().getStringArray(R.array.sections);
+                selectedSection = availableSections[i];
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        paymentTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedPaymentType = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
@@ -69,7 +96,9 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
     }
 
     @OnClick(R.id.btn_make_payment)
-    public void makePayment(){
-
+    public void makePayment() {
+        Payment schoolFeesPayment=new Payment();
+        schoolFeesPayment.setSection(selectedSection);
+        mPaymentOverviewPresenter.makePayment(schoolFeesPayment);
     }
 }

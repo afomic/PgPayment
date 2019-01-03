@@ -7,6 +7,24 @@ public class User {
     private String email;
     private String mobileNumber;
     private String password;
+    private String department;
+    private String faculty;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
 
     public String getMatricNumber() {
         return matricNumber;

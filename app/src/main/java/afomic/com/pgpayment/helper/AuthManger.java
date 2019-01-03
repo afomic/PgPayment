@@ -4,27 +4,28 @@ import afomic.com.pgpayment.model.User;
 
 public class AuthManger {
     private static AuthManger sAuthManger;
+
     private AuthManger() {
 
     }
 
     public static AuthManger getInstance() {
-        if(sAuthManger==null){
-             sAuthManger=new AuthManger();
+        if (sAuthManger == null) {
+            sAuthManger = new AuthManger();
         }
         return sAuthManger;
     }
 
     public void login(String matricNumber, String password, AuthManagerCallback callback) {
-        if(matricNumber.equalsIgnoreCase("csc/2013/017")&&password.equals("michael123")){
+        if (matricNumber.equalsIgnoreCase("csc/2013/017") && password.equals("michael123")) {
             callback.onSuccess(null);
-        }else {
+        } else {
             callback.onFailure("Incorrect Matric number or password");
         }
 
     }
 
-    public void signUp(User user, String password, AuthManagerCallback callback) {
+    public void signUp(User user, AuthManagerCallback callback) {
 
     }
 

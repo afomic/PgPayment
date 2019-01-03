@@ -1,5 +1,6 @@
 package afomic.com.pgpayment.ui.signUp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,9 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
+import afomic.com.pgpayment.model.User;
+import afomic.com.pgpayment.ui.main.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -81,7 +85,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         deparmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                selectedDepartment = mSignUpPresenter.getDepartmentName(i);
             }
 
             @Override
@@ -104,7 +108,36 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     @OnClick(R.id.btn_sign_up)
     public void signUpButtonClick() {
         String email = emailEditText.getText().toString();
+        String firstName = firstNameEditText.getText().toString();
+        String lastname = lastNameEditText.getText().toString();
         String phoneNumber = emailEditText.getText().toString();
         String matricNumber = matricEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        String checkPassword = confrimPaswordEditText.getText().toString();
+        if (password.equals(checkPassword)) {
+            User user = new User();
+            user.setEmail(email);
+            user.setFirstName(firstName);
+            user.setLastName(lastname);
+            user.setMatricNumber(matricNumber);
+            user.setMobileNumber(phoneNumber);
+            user.setPassword(password);
+            user.setDepartment(selectedDepartment);
+            user.setFaculty(selectedFaculty);
+            mSignUpPresenter.signUpUser(user);
+        } else {
+            notifySignUpFail("Password does not match");
+        }
+    }
+
+    @Override
+    public void notifySignUpFail(String reason) {
+        Toast.makeText(SignUpActivity.this, reason, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMainView() {
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

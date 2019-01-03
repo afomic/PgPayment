@@ -32,7 +32,7 @@
         android:padding="@dimen/spinner_padding"
         android:layout_height="wrap_content"/>
     <Button
-        android:text="Make Payment"
+        android:text="Pay School fees"
         android:id="@+id/btn_make_payment"
         android:layout_gravity="center"
         android:layout_margin="16dp"
