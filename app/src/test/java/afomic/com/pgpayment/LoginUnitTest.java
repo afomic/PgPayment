@@ -40,6 +40,7 @@ public class LoginUnitTest {
 
     @Test
     public void login_user_with_right_input() {
+//        verify(mAuthManger).login("csc/2013/017","michael123",callBa);
         mLoginPresenter.loginUser("csc/2013/017", "michael123");
         verify(mLoginView, times(1)).showHomeView();
     }

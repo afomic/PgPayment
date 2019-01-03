@@ -99,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:entries="@array/department"
+            android:clickable="false"
             android:padding="8dp" />
 
         <android.support.design.widget.TextInputLayout
@@ -130,7 +131,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_sign_up"
             android:background="@color/colorPrimary"
             android:textColor="@color/white"
             android:layout_width="wrap_content"

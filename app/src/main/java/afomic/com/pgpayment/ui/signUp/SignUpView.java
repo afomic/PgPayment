@@ -1,6 +1,9 @@
 package afomic.com.pgpayment.ui.signUp;
 
-public interface SignUpView {
+import afomic.com.pgpayment.ui.base.BaseView;
+
+public interface SignUpView extends BaseView {
     void showFacultyDepartments(String[] departments);
+
     void enableDepartmentSpinner();
 }

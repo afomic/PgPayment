@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
-import afomic.com.pgpayment.ui.home.MainActivity;
+import afomic.com.pgpayment.ui.main.MainActivity;
 import afomic.com.pgpayment.ui.signUp.SignUpActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;

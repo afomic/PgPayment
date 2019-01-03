@@ -1,4 +1,4 @@
-package afomic.com.pgpayment.ui.home;
+package afomic.com.pgpayment.ui.main;
 
 public class MainPresenter {
     private MainView mMainView;

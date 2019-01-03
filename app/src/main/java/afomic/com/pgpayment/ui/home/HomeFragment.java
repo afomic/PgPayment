@@ -1,4 +1,4 @@
-package afomic.com.pgpayment.fragment;
+package afomic.com.pgpayment.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

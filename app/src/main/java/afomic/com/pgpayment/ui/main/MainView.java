@@ -1,4 +1,4 @@
-package afomic.com.pgpayment.ui.home;
+package afomic.com.pgpayment.ui.main;
 
 import afomic.com.pgpayment.ui.base.BaseView;
 

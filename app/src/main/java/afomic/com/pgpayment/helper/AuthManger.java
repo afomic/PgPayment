@@ -16,6 +16,12 @@ public class AuthManger {
     }
 
     public void login(String matricNumber, String password, AuthManagerCallback callback) {
+        if(matricNumber.equalsIgnoreCase("csc/2013/017")&&password.equals("michael123")){
+            callback.onSuccess(null);
+        }else {
+            callback.onFailure("Incorrect Matric number or password");
+        }
+
     }
 
     public void signUp(User user, String password, AuthManagerCallback callback) {

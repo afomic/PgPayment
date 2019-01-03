@@ -7,7 +7,8 @@
     android:layout_height="match_parent">
     <TextView
         android:text="Payment Section:"
-        android:padding="8dp"
+        android:padding="16dp"
+        android:textSize="12sp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -19,8 +20,9 @@
         android:layout_height="wrap_content"/>
     <TextView
         android:text="Payment types:"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
-        android:padding="8dp"
+        android:padding="16dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_height="wrap_content" />
     <Spinner
@@ -34,6 +36,9 @@
         android:id="@+id/btn_make_payment"
         android:layout_gravity="center"
         android:layout_margin="16dp"
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

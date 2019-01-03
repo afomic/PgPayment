@@ -1,4 +1,4 @@
-package afomic.com.pgpayment.ui.home;
+package afomic.com.pgpayment.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +11,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import afomic.com.pgpayment.R;
-import afomic.com.pgpayment.fragment.HomeFragment;
+import afomic.com.pgpayment.ui.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
