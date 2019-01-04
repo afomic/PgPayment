@@ -64,7 +64,7 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
             } else {
                 transactionStatusTextView.setText("Failed");
             }
-            String amount = "₦" + paymentHistory.getAmount();
+            String amount = mContext.getString(R.string.naira) + paymentHistory.getAmount();
             transactionAmount.setText(amount);
             transactionIdTextView.setText(paymentHistory.getTransactionId());
             String section = paymentHistory.getTransactionId() + "Section";

@@ -31,4 +31,5 @@
         <item>Rain Semester</item>
         <item>Harmattan Semester</item>
     </string-array>
+    <string name="naira">₦</string>
 </resources>
