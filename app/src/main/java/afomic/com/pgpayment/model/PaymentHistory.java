@@ -1,9 +1,13 @@
 package afomic.com.pgpayment.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class PaymentHistory {
+    @PrimaryKey(autoGenerate = true)
+    public int id;
+
     private String transactionId;
     private String section;
     private String amount;

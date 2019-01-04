@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.model.Payment;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PaymentOverviewFragment extends Fragment implements PaymentOverviewView {
@@ -21,6 +22,8 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
 
     @BindView(R.id.spn_section)
     Spinner sectionSpinner;
+
+    public static String TAG = "PaymentOverviewFragment";
 
     private PaymentOverviewPresenter mPaymentOverviewPresenter;
     private int selectedPaymentType;
@@ -35,16 +38,17 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_payment_overview, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
     }
 
     @Override
-    public void intView() {
+    public void initView() {
 
     }
 
@@ -97,7 +101,7 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
 
     @OnClick(R.id.btn_make_payment)
     public void makePayment() {
-        Payment schoolFeesPayment=new Payment();
+        Payment schoolFeesPayment = new Payment();
         schoolFeesPayment.setSection(selectedSection);
         mPaymentOverviewPresenter.makePayment(schoolFeesPayment);
     }

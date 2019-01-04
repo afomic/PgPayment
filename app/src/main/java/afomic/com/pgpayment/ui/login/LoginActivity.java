@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void intView() {
+    public void initView() {
         setTitle("Login");
     }
 

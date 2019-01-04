@@ -11,7 +11,7 @@ public class LoginPresenter {
     public LoginPresenter(LoginView view, AuthManger authManger) {
         mLoginView = view;
         mAuthManger = authManger;
-        mLoginView.intView();
+        mLoginView.initView();
     }
 
     public void loginUser(String matricNumber, String password) {

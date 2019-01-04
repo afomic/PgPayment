@@ -14,7 +14,7 @@ public class PaymentHistoryPresenter {
 
     public PaymentHistoryPresenter(PaymentHistoryView view) {
         this.mPaymentHistoryView = view;
-        view.intView();
+        view.initView();
         view.initListeners();
     }
 

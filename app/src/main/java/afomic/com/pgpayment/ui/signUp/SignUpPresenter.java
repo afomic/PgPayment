@@ -13,7 +13,7 @@ public class SignUpPresenter {
     public SignUpPresenter(SignUpView signUpView, AuthManger authManger) {
         mSignUpView = signUpView;
         mAuthManger = authManger;
-        signUpView.intView();
+        signUpView.initView();
         signUpView.initListeners();
     }
 

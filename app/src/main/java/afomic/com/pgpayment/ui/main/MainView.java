@@ -6,5 +6,4 @@ public interface MainView extends BaseView {
     void showPaymentOverview();
     void showProfile();
     void showPaymentHistory();
-    void showSettings();
 }

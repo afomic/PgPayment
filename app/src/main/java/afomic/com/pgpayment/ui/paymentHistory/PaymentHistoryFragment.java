@@ -25,14 +25,10 @@ public class PaymentHistoryFragment extends Fragment implements PaymentHistoryVi
     @BindView(R.id.empty_view)
     LinearLayout emptyView;
 
+    public static String TAG="PaymentHistoryFragment";
+
+
     private PaymentHistoryPresenter mPaymentOverviewPresenter;
-
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mPaymentOverviewPresenter = new PaymentHistoryPresenter(this);
-    }
 
     @Nullable
     @Override
@@ -44,6 +40,7 @@ public class PaymentHistoryFragment extends Fragment implements PaymentHistoryVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        mPaymentOverviewPresenter = new PaymentHistoryPresenter(this);
         mPaymentOverviewPresenter.loadData(this);
 
     }
@@ -64,7 +61,7 @@ public class PaymentHistoryFragment extends Fragment implements PaymentHistoryVi
     }
 
     @Override
-    public void intView() {
+    public void initView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         paymentHistoryRecyclerView.setLayoutManager(linearLayoutManager);
         paymentHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));

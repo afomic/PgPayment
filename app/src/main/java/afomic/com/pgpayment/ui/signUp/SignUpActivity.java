@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     }
 
     @Override
-    public void intView() {
+    public void initView() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

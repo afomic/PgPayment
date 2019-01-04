@@ -11,52 +11,34 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import afomic.com.pgpayment.R;
-import afomic.com.pgpayment.ui.home.HomeFragment;
+import afomic.com.pgpayment.ui.paymentHistory.PaymentHistoryFragment;
+import afomic.com.pgpayment.ui.paymentOverview.PaymentOverviewFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private FragmentManager mFragmentManager;
+
+    private MainPresenter mMainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dehaze);
-        initView();
-        initListener();
-        loadHome();
-
-    }
-
-    private void initView() {
-        mDrawerLayout = findViewById(R.id.drawer_view);
-        mNavigationView = findViewById(R.id.navigation_container);
-    }
-
-    private void initListener() {
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                mDrawerLayout.closeDrawers();
-                switch (menuItem.getItemId()){
-                    default:
-                        menuItem.setChecked(true);
-                }
-                return false;
-            }
-        });
-    }
-
-    private void loadHome() {
         mFragmentManager = getSupportFragmentManager();
-        Fragment fragment = mFragmentManager.findFragmentById(R.id.main_container);
-        if (fragment == null) {
-            HomeFragment frag = new HomeFragment();
-            mFragmentManager.beginTransaction().add(R.id.main_container, frag)
-                    .addToBackStack(HomeFragment.TAG).commit();
-        }
+        mMainPresenter = new MainPresenter(this);
+    }
+
+
+    private void loadPaymentOverview() {
+        PaymentOverviewFragment frag = new PaymentOverviewFragment();
+        mFragmentManager.beginTransaction().add(R.id.main_container, frag)
+                .addToBackStack(PaymentOverviewFragment.TAG).commit();
+    }
+
+    private void showFragment(Fragment fragment, String tag) {
+        mFragmentManager.beginTransaction().replace(R.id.main_container, fragment)
+                .addToBackStack(tag).commit();
     }
 
     @Override
@@ -65,5 +47,62 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.openDrawer(Gravity.START);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showPaymentOverview() {
+        PaymentOverviewFragment frag = new PaymentOverviewFragment();
+        showFragment(frag, PaymentOverviewFragment.TAG);
+    }
+
+    @Override
+    public void showProfile() {
+
+    }
+
+    @Override
+    public void initView() {
+        mDrawerLayout = findViewById(R.id.drawer_view);
+        mNavigationView = findViewById(R.id.navigation_container);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dehaze);
+        loadPaymentOverview();
+    }
+
+    @Override
+    public void initListeners() {
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                mDrawerLayout.closeDrawers();
+                menuItem.setChecked(true);
+                switch (menuItem.getItemId()) {
+                    case R.id.menu_payment_history:
+                        showPaymentHistory();
+                        break;
+                    case R.id.menu_home:
+                        showPaymentOverview();
+                        break;
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void showPaymentHistory() {
+        PaymentHistoryFragment fragment = new PaymentHistoryFragment();
+        showFragment(fragment, PaymentHistoryFragment.TAG);
     }
 }
