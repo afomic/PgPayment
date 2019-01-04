@@ -1,5 +1,6 @@
 package afomic.com.pgpayment.ui.paymentOverview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,9 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import afomic.com.pgpayment.Constants;
 import afomic.com.pgpayment.R;
+import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.model.Payment;
+import afomic.com.pgpayment.ui.PaymentDetail.PaymentDetailActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,14 +31,9 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
     public static String TAG = "PaymentOverviewFragment";
 
     private PaymentOverviewPresenter mPaymentOverviewPresenter;
-    private int selectedPaymentType;
+    private String selectedPaymentType;
     private String selectedSection;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mPaymentOverviewPresenter = new PaymentOverviewPresenter(this);
-    }
 
     @Nullable
     @Override
@@ -45,7 +45,9 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        mPaymentOverviewPresenter = new PaymentOverviewPresenter(this, AuthManger.getInstance());
     }
+
 
     @Override
     public void initView() {
@@ -69,7 +71,8 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
         paymentTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedPaymentType = i;
+                String[] availablePaymentType = getResources().getStringArray(R.array.payment_types);
+                selectedPaymentType = availablePaymentType[i];
             }
 
             @Override
@@ -90,19 +93,23 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
     }
 
     @Override
-    public void showPaymentView() {
-
+    public void notifyError(String reason) {
+        Toast.makeText(getContext(), reason, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void notifyError(String reason) {
-
+    public void showPaymentDetails(Payment payment) {
+        Intent intent = new Intent(getContext(), PaymentDetailActivity.class);
+        intent.putExtra(Constants.EXTRA_PAYMENT, payment);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btn_make_payment)
     public void makePayment() {
         Payment schoolFeesPayment = new Payment();
         schoolFeesPayment.setSection(selectedSection);
+        schoolFeesPayment.setType(selectedPaymentType);
         mPaymentOverviewPresenter.makePayment(schoolFeesPayment);
     }
+
 }

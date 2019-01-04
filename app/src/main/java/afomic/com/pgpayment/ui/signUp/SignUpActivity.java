@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
-        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance(PGPayment.getContext()));
+        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance());
 
     }
 

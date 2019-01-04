@@ -1,22 +1,21 @@
 package afomic.com.pgpayment.helper;
 
-import android.content.Context;
-
 import com.google.gson.reflect.TypeToken;
 
+import afomic.com.pgpayment.PGPayment;
 import afomic.com.pgpayment.model.User;
 
 public class AuthManger {
     private static AuthManger sAuthManger;
     private SharedPreferenceManager mSharedPreferenceManager;
 
-    private AuthManger(Context context) {
-        mSharedPreferenceManager = new SharedPreferenceManager(context);
+    private AuthManger() {
+        mSharedPreferenceManager = new SharedPreferenceManager(PGPayment.getContext());
     }
 
-    public static AuthManger getInstance(Context context) {
+    public static AuthManger getInstance() {
         if (sAuthManger == null) {
-            sAuthManger = new AuthManger(context);
+            sAuthManger = new AuthManger();
         }
         return sAuthManger;
     }
@@ -43,4 +42,10 @@ public class AuthManger {
 
         void onFailure(String reason);
     }
+
+    public User getCurrentUser() {
+        String userString = mSharedPreferenceManager.getStringPref(SharedPreferenceManager.PREF_USER);
+        return (User) Common.parseJSONToObject(userString, TypeToken.get(User.class));
+    }
+
 }
