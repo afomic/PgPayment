@@ -18,7 +18,7 @@ public class SignUpPresenter {
     }
 
     public void signUpUser(User user) {
-        if (StringUtils.isValidMatricNumber(user.getMatricNumber())) {
+        if (!StringUtils.isValidMatricNumber(user.getMatricNumber())) {
             mSignUpView.notifySignUpFail("Please enter valid matric number");
             return;
         }
@@ -69,6 +69,9 @@ public class SignUpPresenter {
     }
 
     public String getDepartmentName(int selectedDepartment) {
-        return departmentList[selectedDepartment];
+        if (departmentList.length > 0) {
+            return departmentList[selectedDepartment];
+        }
+        return null;
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import afomic.com.pgpayment.PGPayment;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.ui.main.MainActivity;
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        mLoginPresenter = new LoginPresenter(this, AuthManger.getInstance());
+        mLoginPresenter = new LoginPresenter(this, AuthManger.getInstance(PGPayment.getContext()));
     }
 
 
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         String password = passwordEditText.getText().toString();
         mLoginPresenter.loginUser(matricNumber, password);
     }
-    @OnClick(R.id.tv_sign_up)
+    @OnClick(R.id.btn_sign_up)
     public void signUpTextClick(){
         mLoginPresenter.handleSignUpButtonClicked();
     }

@@ -16,8 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
             android:gravity="center_horizontal"
-            android:text="Create Account" />
+            android:text="Create New Account" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -109,10 +111,9 @@
 
             <EditText
                 android:id="@+id/edt_password"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm"
+                android:hint="Password"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -133,6 +134,7 @@
         <Button
             android:id="@+id/btn_sign_up"
             android:background="@color/colorPrimary"
+            android:padding="16dp"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

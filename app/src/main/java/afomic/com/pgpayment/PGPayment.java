@@ -4,12 +4,16 @@ import android.app.Application;
 import android.content.Context;
 
 public class PGPayment extends Application {
+    private static Application sApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        sApplication = this;
     }
 
-    public Context getContext() {
-        return getApplicationContext();
+    public static Context getContext() {
+        return sApplication.getApplicationContext();
+
     }
 }

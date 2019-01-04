@@ -24,7 +24,7 @@ public class SharedPreferenceManager {
     }
 
     public String getStringPref(String key) {
-        return mSharedPreferences.getString(key, null);
+        return mSharedPreferences.getString(key, "");
     }
 
     public void saveBooleanPref(String key, boolean value) {

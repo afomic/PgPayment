@@ -3,6 +3,7 @@ package afomic.com.pgpayment.ui.signUp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import afomic.com.pgpayment.PGPayment;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.model.User;
@@ -44,12 +46,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
-        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance());
+        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance(PGPayment.getContext()));
 
     }
 
     @Override
     public void intView() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -139,5 +142,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     public void showMainView() {
         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
