@@ -1,5 +1,8 @@
 package afomic.com.pgpayment.model;
 
+import android.arch.persistence.room.Entity;
+
+@Entity
 public class PaymentHistory {
     private String transactionId;
     private String section;
