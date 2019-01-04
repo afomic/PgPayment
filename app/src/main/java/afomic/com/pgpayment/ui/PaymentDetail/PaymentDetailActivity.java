@@ -3,6 +3,7 @@ package afomic.com.pgpayment.ui.PaymentDetail;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import afomic.com.pgpayment.R;
@@ -55,7 +56,8 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
 
     @Override
     public void initView() {
-
+        setTitle("Payment Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -71,5 +73,13 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
     @Override
     public void hideProgress() {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

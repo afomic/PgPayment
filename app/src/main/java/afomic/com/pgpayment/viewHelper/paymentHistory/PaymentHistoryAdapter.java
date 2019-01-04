@@ -67,8 +67,7 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAd
             String amount = mContext.getString(R.string.naira) + paymentHistory.getAmount();
             transactionAmount.setText(amount);
             transactionIdTextView.setText(paymentHistory.getTransactionId());
-            String section = paymentHistory.getTransactionId() + "Section";
-            transactionSectionTextView.setText(section);
+            transactionSectionTextView.setText(paymentHistory.getTransactionId());
 
         }
     }
