@@ -55,7 +55,6 @@ public class Common {
     public static String stringifyObject(Object object) {
         try {
             Gson gson = new GsonBuilder()
-                    .excludeFieldsWithoutExposeAnnotation()
                     .create();
             return gson.toJson(object);
         } catch (OutOfMemoryError e) {

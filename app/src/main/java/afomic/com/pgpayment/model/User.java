@@ -1,13 +1,23 @@
 package afomic.com.pgpayment.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+    @SerializedName("matric_number")
     private String matricNumber;
+    @SerializedName("first_name")
     private String firstName;
+    @SerializedName("last_name")
     private String lastName;
+    @SerializedName("email")
     private String email;
+    @SerializedName("mobile_number")
     private String mobileNumber;
+    @SerializedName("password")
     private String password;
+    @SerializedName("department")
     private String department;
+    @SerializedName("faculty")
     private String faculty;
 
     public String getDepartment() {
