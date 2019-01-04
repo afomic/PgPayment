@@ -8,8 +8,7 @@ public class PaymentOverviewPresenter {
     public PaymentOverviewPresenter(PaymentOverviewView paymentOverviewView) {
         mOverviewView = paymentOverviewView;
     }
-
-    public void makePayment(Payment payment) {
+    public void makePayment(Payment payment){
 
     }
 }
