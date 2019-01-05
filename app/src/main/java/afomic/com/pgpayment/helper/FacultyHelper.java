@@ -38,7 +38,7 @@ public class FacultyHelper {
         });
 
         departmentStore.put("Faculty of Basic Medical Sciences", new String[]{"Department of Anatomy and Cell Biology",
-        ""});
+                ""});
         departmentStore.put("Faculty of Clinical Sciences", new String[]{"Department of Medicine "});
         departmentStore.put("Faculty of  Environment and  Development Management",
                 new String[]{"Department of Fine and Applied Arts",
@@ -65,5 +65,13 @@ public class FacultyHelper {
             return departmentList;
         }
         return new String[]{};
+    }
+
+    public static int getFacultySchoolFees(String faculty) {
+        Integer amount = schoolFees.get(faculty);
+        if (amount == null) {
+            return 0;
+        }
+        return amount;
     }
 }

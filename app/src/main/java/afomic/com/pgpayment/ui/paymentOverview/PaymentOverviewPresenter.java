@@ -1,6 +1,7 @@
 package afomic.com.pgpayment.ui.paymentOverview;
 
 import afomic.com.pgpayment.helper.AuthManger;
+import afomic.com.pgpayment.helper.FacultyHelper;
 import afomic.com.pgpayment.model.Payment;
 import afomic.com.pgpayment.model.User;
 
@@ -20,7 +21,11 @@ public class PaymentOverviewPresenter {
         payment.setEmail(user.getEmail());
         payment.setDepartment(user.getDepartment());
         payment.setMatricNumber(user.getMatricNumber());
-        payment.setAmount(0);
+        int amount = FacultyHelper.getFacultySchoolFees(payment.getFaculty());
+        if (!payment.getType().equals("Harmattan and rain Semester")) {
+            amount = amount / 2;
+        }
+        payment.setAmount(amount);
         payment.setFaculty(user.getFaculty());
         mOverviewView.showPaymentDetails(payment);
     }
