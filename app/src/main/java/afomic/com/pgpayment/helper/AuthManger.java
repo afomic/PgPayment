@@ -23,7 +23,7 @@ public class AuthManger {
     public void login(String matricNumber, String password, AuthManagerCallback callback) {
         String userString = mSharedPreferenceManager.getStringPref(SharedPreferenceManager.PREF_USER);
         User user = (User) Common.parseJSONToObject(userString, TypeToken.get(User.class));
-        if (user != null && user.getMatricNumber().equals(matricNumber) && user.getPassword().equals(password)) {
+        if (user != null && user.getMatricNumber().equalsIgnoreCase(matricNumber) && user.getPassword().equals(password)) {
             callback.onSuccess(user);
         } else {
             callback.onFailure("Invalid Matric number or passsword");
