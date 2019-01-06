@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     public void showHomeView() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
