@@ -1,4 +1,8 @@
 package afomic.com.pgpayment.ui.profile;
 
-public interface ProfileView {
+import afomic.com.pgpayment.model.User;
+import afomic.com.pgpayment.ui.base.BaseView;
+
+public interface ProfileView extends BaseView {
+    void showUser(User user);
 }

@@ -1,5 +1,6 @@
 package afomic.com.pgpayment.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,8 +12,11 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import afomic.com.pgpayment.R;
+import afomic.com.pgpayment.ui.about.AboutFragment;
+import afomic.com.pgpayment.ui.login.LoginActivity;
 import afomic.com.pgpayment.ui.paymentHistory.PaymentHistoryFragment;
 import afomic.com.pgpayment.ui.paymentOverview.PaymentOverviewFragment;
+import afomic.com.pgpayment.ui.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity implements MainView {
     private DrawerLayout mDrawerLayout;
@@ -57,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showProfile() {
-
+        ProfileFragment fragment = new ProfileFragment();
+        showFragment(fragment, ProfileFragment.TAG);
     }
 
     @Override
@@ -84,6 +89,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
                     case R.id.menu_home:
                         showPaymentOverview();
                         break;
+                    case R.id.menu_profile:
+                        showProfile();
+                        break;
+                    case R.id.menu_about:
+                        showAboutPage();
+                        break;
+                    case R.id.menu_sign_out:
+                        showLogin();
+                        break;
                 }
                 return false;
             }
@@ -102,7 +116,19 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showPaymentHistory() {
-        PaymentHistoryFragment fragment = new PaymentHistoryFragment();
+
+    }
+
+    void showAboutPage() {
+        AboutFragment fragment = new AboutFragment();
         showFragment(fragment, PaymentHistoryFragment.TAG);
     }
+
+    void showLogin() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
 }

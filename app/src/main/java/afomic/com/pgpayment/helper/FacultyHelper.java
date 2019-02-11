@@ -50,12 +50,12 @@ public class FacultyHelper {
                         "Department of Fine and Applied Arts"
                 });
 
-        schoolFees.put("Faculty of Admin", 19700);
-        schoolFees.put("Faculty of Agriculture", 27700);
-        schoolFees.put("Faculty of Arts", 19700);
-        schoolFees.put("Faculty of Basic Clinical Sciences", 30700);
-        schoolFees.put("Faculty of Clinical Sciences", 30700);
-        schoolFees.put("Faculty of  Environment and  Development Management", 30700);
+        schoolFees.put("Faculty of Admin", 120000);
+        schoolFees.put("Faculty of Agriculture", 150000);
+        schoolFees.put("Faculty of Arts", 150000);
+        schoolFees.put("Faculty of Basic Clinical Sciences", 250000);
+        schoolFees.put("Faculty of Clinical Sciences", 250000);
+        schoolFees.put("Faculty of  Environment and  Development Management", 180000);
 
     }
 

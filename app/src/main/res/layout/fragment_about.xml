@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="100dp"
+        android:src="@drawable/oaulogo"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:layout_margin="@dimen/size_16"
+        android:layout_height="100dp" />
+    <TextView
+        android:text="This an application for the payment of tuition fee of Post graduate student of Obafemi Awolowo University Ile-Ife"
+        android:padding="@dimen/size_16"
+        android:lineSpacingExtra="@dimen/size_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="@string/about"
+        android:padding="@dimen/size_16"
+        android:lineSpacingExtra="@dimen/size_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

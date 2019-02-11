@@ -28,6 +28,7 @@ public class WebPaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_payment);
         paymentView = findViewById(R.id.paymentView);
         button = paymentView.getPayButton();
+        setTitle(" Web Payment");
         mPayment = getIntent().getParcelableExtra(Constants.EXTRA_PAYMENT);
         String[] arraySpinner = new String[]{
                 "Access Bank", "Citibank", "Diamond Bank", "Dynamic Standard Bank", "Ecobank Nigeria", "Fidelity Bank Nigeria",
@@ -53,7 +54,7 @@ public class WebPaymentActivity extends AppCompatActivity {
                     paymentView.hideLoader();
                     return;
                 }
-                if (expiryDate.length() != 4) {
+                if (expiryDate.length() != 5) {
                     Toast.makeText(WebPaymentActivity.this, "Invalid expiry date", Toast.LENGTH_SHORT).show();
                     paymentView.hideLoader();
                     return;

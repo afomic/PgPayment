@@ -1,6 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
 
-</android.support.constraint.ConstraintLayout>
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/header_image" />
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_person" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_8">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/ic_person"
+                    android:layout_margin="@dimen/size_16"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:padding="@dimen/size_4"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:text="Name" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/tv_name"
+                        android:padding="@dimen/size_4"
+                        android:layout_height="wrap_content"
+                        android:text="Afolabi Michael" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_8">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/ic_email_black_24dp"
+                    android:layout_margin="@dimen/size_16"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:padding="@dimen/size_4"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:text="Email" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/tv_email"
+                        android:padding="@dimen/size_4"
+                        android:layout_height="wrap_content"
+                        android:text="Afolabi Michael" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_8">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/ic_email_black_24dp"
+                    android:layout_margin="@dimen/size_16"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:padding="@dimen/size_4"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:text="PhoneNumber" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/tv_phone"
+                        android:padding="@dimen/size_4"
+                        android:layout_height="wrap_content"
+                        android:text="Afolabi Michael" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_8">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/ic_matric"
+                    android:layout_margin="@dimen/size_16"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:padding="@dimen/size_4"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:text="Matric Number" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/tv_matric_number"
+                        android:padding="@dimen/size_4"
+                        android:layout_height="wrap_content"
+                        android:text="CSC/2013/17" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_8">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/ic_faculty"
+                    android:layout_margin="@dimen/size_16"
+                    android:layout_width="@dimen/size_32"
+                    android:layout_height="@dimen/size_32" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:padding="@dimen/size_4"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:text="Department" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/tv_department"
+                        android:padding="@dimen/size_4"
+                        android:layout_height="wrap_content"
+                        android:text="CSC/2013/17" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>
