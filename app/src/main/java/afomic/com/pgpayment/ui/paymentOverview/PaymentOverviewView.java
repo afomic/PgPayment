@@ -7,4 +7,5 @@ interface PaymentOverviewView extends BaseView {
     void notifyError(String reason);
 
     void showPaymentDetails(Payment payment);
+
 }

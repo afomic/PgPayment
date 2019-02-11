@@ -1,13 +1,16 @@
 package afomic.com.pgpayment.ui.PaymentDetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import afomic.com.pgpayment.Constants;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.model.Payment;
+import afomic.com.pgpayment.ui.paystack.WebPaymentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,7 +28,6 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
     TextView paymentTypeTextView;
     @BindView(R.id.tv_section)
     TextView sectionTextView;
-
     private PaymentDetailPresenter mPaymentDetailPresenter;
 
     @Override
@@ -58,6 +60,8 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
     public void initView() {
         setTitle("Payment Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
     }
 
     @Override
@@ -81,5 +85,12 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showPaystackView(Payment payment) {
+        Intent intent = new Intent(PaymentDetailActivity.this, WebPaymentActivity.class);
+        intent.putExtra(Constants.EXTRA_PAYMENT, payment);
+        startActivity(intent);
     }
 }

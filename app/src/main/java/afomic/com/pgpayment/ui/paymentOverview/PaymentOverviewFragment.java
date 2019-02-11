@@ -17,6 +17,7 @@ import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.model.Payment;
 import afomic.com.pgpayment.ui.PaymentDetail.PaymentDetailActivity;
+import app.ephod.pentecost.library.paystack.PaymentView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -111,5 +112,4 @@ public class PaymentOverviewFragment extends Fragment implements PaymentOverview
         schoolFeesPayment.setType(selectedPaymentType);
         mPaymentOverviewPresenter.makePayment(schoolFeesPayment);
     }
-
 }

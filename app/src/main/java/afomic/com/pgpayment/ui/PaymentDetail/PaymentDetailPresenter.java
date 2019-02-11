@@ -29,6 +29,6 @@ public class PaymentDetailPresenter {
         paymentHistory.setAmount(currentPayment.getAmount());
         paymentHistory.setSection(currentPayment.getSection());
         paymentHistory.setStatus(true);
-        DbHelper.db.getPaymentHistoryDao().insert(paymentHistory);
+        mPaymentDetailView.showPaystackView(currentPayment);
     }
 }

@@ -10,19 +10,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity"></activity>
+        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.signUp.SignUpActivity" />
-        <activity android:name=".ui.login.LoginActivity">
-
-        </activity>
+        <activity android:name=".ui.login.LoginActivity"></activity>
         <activity android:name=".ui.PaymentDetail.PaymentDetailActivity" />
-        <activity android:name=".ui.splash.SplashScreenActivity" android:theme="@style/noActionBar">
+        <activity
+            android:name=".ui.splash.SplashScreenActivity"
+            android:theme="@style/noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.paystack.WebPaymentActivity"></activity>
     </application>
 
 </manifest>

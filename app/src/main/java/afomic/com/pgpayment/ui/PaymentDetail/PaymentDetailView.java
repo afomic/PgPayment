@@ -5,4 +5,6 @@ import afomic.com.pgpayment.ui.base.BaseView;
 
 public interface PaymentDetailView extends BaseView {
     void showPaymentDetail(Payment payment);
+
+    void showPaystackView(Payment payment);
 }
