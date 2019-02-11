@@ -9,6 +9,8 @@ public class DbHelper {
 
     static {
         db = Room.databaseBuilder(PGPayment.getContext(),
-                AppDatabase.class, "pgpayment.db").build();
+                AppDatabase.class, "pgpayment.db")
+                .allowMainThreadQueries()
+                .build();
     }
 }

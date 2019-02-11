@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "afomic.com.pgpayment"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -32,5 +32,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation "android.arch.persistence.room:runtime:1.1.1"
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'app.ephod.pentecost:pentecost:1.1.12'
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 }

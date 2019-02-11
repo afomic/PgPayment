@@ -35,7 +35,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_matric" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_faculty" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_faculty" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -155,7 +155,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_section" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -188,7 +188,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_type" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_amount" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

@@ -14,21 +14,11 @@
     <ImageView
         android:id="@+id/icon_image"
         android:layout_margin="4dp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/logo"
          android:layout_centerInParent="true"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:adjustViewBounds="true"
         android:cropToPadding="true" />
-    <TextView
-        android:text="Pg Payment"
-        android:textSize="12sp"
-        android:id="@+id/team"
-        android:layout_margin="8dp"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </RelativeLayout>

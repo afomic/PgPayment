@@ -3,7 +3,9 @@ package afomic.com.pgpayment.ui.PaymentDetail;
 import android.os.Bundle;
 
 import afomic.com.pgpayment.Constants;
+import afomic.com.pgpayment.data.DbHelper;
 import afomic.com.pgpayment.model.Payment;
+import afomic.com.pgpayment.model.PaymentHistory;
 
 public class PaymentDetailPresenter {
     private PaymentDetailView mPaymentDetailView;
@@ -23,6 +25,10 @@ public class PaymentDetailPresenter {
     }
 
     public void handleMakePayment() {
-
+        PaymentHistory paymentHistory = new PaymentHistory();
+        paymentHistory.setAmount(currentPayment.getAmount());
+        paymentHistory.setSection(currentPayment.getSection());
+        paymentHistory.setStatus(true);
+        DbHelper.db.getPaymentHistoryDao().insert(paymentHistory);
     }
 }

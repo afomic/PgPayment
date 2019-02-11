@@ -10,7 +10,7 @@ public class PaymentHistory {
 
     private String transactionId;
     private String section;
-    private String amount;
+    private int amount;
     private boolean status;
 
     public String getTransactionId() {
@@ -29,11 +29,11 @@ public class PaymentHistory {
         this.section = section;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

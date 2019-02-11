@@ -11,10 +11,10 @@
         android:tint="@color/tint_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:layout_centerInParent="true"
         android:layout_width="120dp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/logo"
         android:layout_height="120dp" />
 
     <TextView

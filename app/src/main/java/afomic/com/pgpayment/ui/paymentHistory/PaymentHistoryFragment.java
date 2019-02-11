@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.model.PaymentHistory;
+import afomic.com.pgpayment.viewHelper.paymentHistory.PaymentHistoryAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -25,10 +27,12 @@ public class PaymentHistoryFragment extends Fragment implements PaymentHistoryVi
     @BindView(R.id.empty_view)
     LinearLayout emptyView;
 
-    public static String TAG="PaymentHistoryFragment";
+    public static String TAG = "PaymentHistoryFragment";
 
 
     private PaymentHistoryPresenter mPaymentOverviewPresenter;
+    private PaymentHistoryAdapter mPaymentHistoryAdapter;
+    private List<PaymentHistory> mPaymentHistories;
 
     @Nullable
     @Override
@@ -47,7 +51,9 @@ public class PaymentHistoryFragment extends Fragment implements PaymentHistoryVi
 
     @Override
     public void showPaymentHistory(List<PaymentHistory> paymentHistories) {
-
+        mPaymentHistories.clear();
+        mPaymentHistories.addAll(paymentHistories);
+        mPaymentHistoryAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -65,6 +71,9 @@ public class PaymentHistoryFragment extends Fragment implements PaymentHistoryVi
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         paymentHistoryRecyclerView.setLayoutManager(linearLayoutManager);
         paymentHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mPaymentHistories = new ArrayList<>();
+        mPaymentHistoryAdapter = new PaymentHistoryAdapter(getContext(), mPaymentHistories);
+        paymentHistoryRecyclerView.setAdapter(mPaymentHistoryAdapter);
     }
 
     @Override

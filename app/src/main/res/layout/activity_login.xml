@@ -9,12 +9,12 @@
         android:tint="@color/tint_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="64dp"
+    <ImageView
+        android:layout_width="80dp"
         android:layout_margin="16dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_height="64dp" />
+        android:src="@drawable/logo"
+        android:layout_height="80dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

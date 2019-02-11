@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PgPayment</string>
+    <string name="app_name">PgPay</string>
     <string-array name="faculty">
         <item>Please Select your Faculty</item>
         <item>Faculty of Admin</item>
@@ -27,7 +27,6 @@
         <item>2018/2019 Section</item>
     </string-array>
     <string-array name="payment_types">
-        <item>Harmattan and rain Semester</item>
         <item>Rain Semester</item>
         <item>Harmattan Semester</item>
     </string-array>
