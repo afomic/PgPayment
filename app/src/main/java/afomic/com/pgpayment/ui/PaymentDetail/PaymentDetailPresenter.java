@@ -25,10 +25,6 @@ public class PaymentDetailPresenter {
     }
 
     public void handleMakePayment() {
-        PaymentHistory paymentHistory = new PaymentHistory();
-        paymentHistory.setAmount(currentPayment.getAmount());
-        paymentHistory.setSection(currentPayment.getSection());
-        paymentHistory.setStatus(true);
         mPaymentDetailView.showPaystackView(currentPayment);
     }
 }

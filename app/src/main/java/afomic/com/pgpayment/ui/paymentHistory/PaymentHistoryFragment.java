@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import afomic.com.pgpayment.R;
@@ -52,7 +53,9 @@ public class PaymentHistoryFragment extends Fragment implements PaymentHistoryVi
     @Override
     public void showPaymentHistory(List<PaymentHistory> paymentHistories) {
         mPaymentHistories.clear();
+        Collections.reverse(paymentHistories);
         mPaymentHistories.addAll(paymentHistories);
+
         mPaymentHistoryAdapter.notifyDataSetChanged();
     }
 

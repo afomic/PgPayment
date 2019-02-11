@@ -11,12 +11,16 @@ import java.text.NumberFormat;
 
 import afomic.com.pgpayment.Constants;
 import afomic.com.pgpayment.R;
+import afomic.com.pgpayment.data.DbHelper;
+import afomic.com.pgpayment.helper.StringUtils;
 import afomic.com.pgpayment.model.Payment;
+import afomic.com.pgpayment.model.PaymentHistory;
 import app.ephod.pentecost.library.paystack.PaymentView;
 
 public class WebPaymentActivity extends AppCompatActivity {
     PaymentView paymentView;
     Button button;
+    Payment mPayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,7 @@ public class WebPaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_payment);
         paymentView = findViewById(R.id.paymentView);
         button = paymentView.getPayButton();
-        Payment payment = getIntent().getParcelableExtra(Constants.EXTRA_PAYMENT);
+        mPayment = getIntent().getParcelableExtra(Constants.EXTRA_PAYMENT);
         String[] arraySpinner = new String[]{
                 "Access Bank", "Citibank", "Diamond Bank", "Dynamic Standard Bank", "Ecobank Nigeria", "Fidelity Bank Nigeria",
                 "First Bank of Nigeria", "First City Monument Bank", "Guaranty Trust Bank", "Heritage Bank Plc", "Jaiz Bank",
@@ -36,6 +40,37 @@ public class WebPaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 paymentView.showLoader();
+                String cvv = paymentView.getCardCCV();
+                String cardNumber = paymentView.getCardNumber();
+                String expiryDate = paymentView.getCardExpDate();
+                if (cvv.length() != 3) {
+                    Toast.makeText(WebPaymentActivity.this, "CVV must be 3 Digit", Toast.LENGTH_SHORT).show();
+                    paymentView.hideLoader();
+                    return;
+                }
+                if (cardNumber.length() != 16) {
+                    Toast.makeText(WebPaymentActivity.this, "Card number incorrect", Toast.LENGTH_SHORT).show();
+                    paymentView.hideLoader();
+                    return;
+                }
+                if (expiryDate.length() != 4) {
+                    Toast.makeText(WebPaymentActivity.this, "Invalid expiry date", Toast.LENGTH_SHORT).show();
+                    paymentView.hideLoader();
+                    return;
+                }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        PaymentHistory paymentHistory = new PaymentHistory();
+                        paymentHistory.setAmount(mPayment.getAmount());
+                        paymentHistory.setSection(mPayment.getSection());
+                        paymentHistory.setStatus(true);
+                        paymentHistory.setTransactionId(StringUtils.getRandomString(16));
+                        DbHelper.db.getPaymentHistoryDao().insert(paymentHistory);
+                        Toast.makeText(WebPaymentActivity.this, "SuccessFull", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }, 3000);
             }
         });
 
@@ -43,30 +78,9 @@ public class WebPaymentActivity extends AppCompatActivity {
         paymentView.setPentecostBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         paymentView.getHeaderContentView().setTextColor(getResources().getColor(R.color.cardview_dark_background));
-        String amount = "₦" + NumberFormat.getNumberInstance().format(payment.getAmount());
+        String amount = "₦" + NumberFormat.getNumberInstance().format(mPayment.getAmount());
         paymentView.setBillContent(amount);
-        paymentView.setChargeListener(new PaymentView.ChargeListener() {
-            @Override
-            public void onChargeCard() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(WebPaymentActivity.this,"SuccessFull",Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                }, 3000);
-            }
 
-            @Override
-            public void onChargeBank() {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-        });
 
     }
 }
