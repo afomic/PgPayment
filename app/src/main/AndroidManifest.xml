@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="afomic.com.pgpayment">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".PGPayment"
         android:allowBackup="true"
@@ -12,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.signUp.SignUpActivity" />
-        <activity android:name=".ui.login.LoginActivity"></activity>
+        <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.PaymentDetail.PaymentDetailActivity" />
         <activity
             android:name=".ui.splash.SplashScreenActivity"
@@ -23,7 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.paystack.WebPaymentActivity"></activity>
+        <activity android:name=".ui.paystack.WebPaymentActivity" />
+        <activity android:name=".ui.otp.OtpActivity"></activity>
     </application>
 
 </manifest>

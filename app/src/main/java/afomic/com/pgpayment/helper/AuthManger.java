@@ -1,5 +1,7 @@
 package afomic.com.pgpayment.helper;
 
+import android.os.Handler;
+
 import com.google.gson.reflect.TypeToken;
 
 import afomic.com.pgpayment.PGPayment;
@@ -20,21 +22,38 @@ public class AuthManger {
         return sAuthManger;
     }
 
-    public void login(String matricNumber, String password, AuthManagerCallback callback) {
+    public void login(String matricNumber, String password, final AuthManagerCallback callback) {
         String userString = mSharedPreferenceManager.getStringPref(SharedPreferenceManager.PREF_USER);
-        User user = (User) Common.parseJSONToObject(userString, TypeToken.get(User.class));
+        final User user = (User) Common.parseJSONToObject(userString, TypeToken.get(User.class));
         if (user != null && user.getMatricNumber().equalsIgnoreCase(matricNumber) && user.getPassword().equals(password)) {
-            callback.onSuccess(user);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onSuccess(user);
+                }
+            }, 3000);
         } else {
-            callback.onFailure("Invalid Matric number or passsword");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onFailure("Invalid Matric number or password");
+                }
+            }, 3000);
+
         }
 
     }
 
-    public void signUp(User user, AuthManagerCallback callback) {
+    public void signUp(final User user, final AuthManagerCallback callback) {
         String userString = Common.stringifyObject(user);
         mSharedPreferenceManager.saveStringPref(SharedPreferenceManager.PREF_USER, userString);
-        callback.onSuccess(user);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(user);
+            }
+        }, 3000);
+
     }
 
     public interface AuthManagerCallback {

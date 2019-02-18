@@ -251,7 +251,7 @@
 
         <Button
             android:id="@+id/btn_make_payment"
-            android:layout_width="250dp"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="8dp"

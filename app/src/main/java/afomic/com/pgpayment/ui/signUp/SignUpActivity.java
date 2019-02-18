@@ -8,14 +8,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import afomic.com.pgpayment.PGPayment;
+import afomic.com.pgpayment.Constants;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.model.User;
-import afomic.com.pgpayment.ui.main.MainActivity;
+import afomic.com.pgpayment.network.ApiService;
+import afomic.com.pgpayment.ui.otp.OtpActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,10 +35,14 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     EditText passwordEditText;
     @BindView(R.id.edt_confirm)
     EditText confrimPaswordEditText;
+    @BindView(R.id.edt_phone)
+    EditText mobileEditText;
     @BindView(R.id.spn_department)
     Spinner deparmentSpinner;
     @BindView(R.id.spn_faculty)
     Spinner facutytSpinner;
+    @BindView(R.id.progress_layout)
+    RelativeLayout progress;
 
     private SignUpPresenter mSignUpPresenter;
     private String selectedFaculty, selectedDepartment;
@@ -46,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
-        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance());
+        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance(), ApiService.getInstance(SignUpActivity.this));
 
     }
 
@@ -100,12 +106,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
     @Override
     public void showProgress() {
-
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        progress.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.btn_sign_up)
@@ -113,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         String email = emailEditText.getText().toString();
         String firstName = firstNameEditText.getText().toString();
         String lastname = lastNameEditText.getText().toString();
-        String phoneNumber = emailEditText.getText().toString();
+        String phoneNumber = mobileEditText.getText().toString();
         String matricNumber = matricEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         String checkPassword = confrimPaswordEditText.getText().toString();
@@ -139,14 +145,16 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     }
 
     @Override
-    public void showMainView() {
-        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+    public void showOtpVerification(String otp) {
+        Intent intent = new Intent(SignUpActivity.this, OtpActivity.class);
+        intent.putExtra(Constants.EXTRA_TYPE, Constants.OTP_USER_VERIFICATION);
+        intent.putExtra(Constants.EXTRA_OTP, otp);
         startActivity(intent);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return super.onOptionsItemSelected(item);

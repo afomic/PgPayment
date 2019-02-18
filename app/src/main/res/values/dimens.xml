@@ -3,4 +3,5 @@
     <dimen name="spinner_padding">8dp</dimen>
     <dimen name="container_padding">8dp</dimen>
     <dimen name="container_margin">8dp</dimen>
+    <dimen name="button_width">250dp</dimen>
 </resources>

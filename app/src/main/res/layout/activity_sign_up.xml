@@ -5,43 +5,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.login.LoginActivity">
+
     <ImageView
-        android:src="@drawable/payment"
-        android:scaleType="centerCrop"
-        android:tint="@color/tint_color"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/payment"
+        android:tint="@color/tint_color" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:padding="8dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:textSize="20sp"
-                android:textColor="@color/colorAccent"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
                 android:gravity="center_horizontal"
-                android:text="Create New Account" />
+                android:text="Create New Account"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_margin="8dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+
                 <EditText
                     android:id="@+id/edt_matric_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Matric Number" />
             </android.support.design.widget.TextInputLayout>
-
 
 
             <android.support.design.widget.TextInputLayout
@@ -92,7 +94,7 @@
                     android:id="@+id/edt_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number"
+                    android:hint="Phone Number(234XXXXXXXXXXX)"
                     android:inputType="phone" />
             </android.support.design.widget.TextInputLayout>
 
@@ -110,8 +112,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:entries="@array/department"
                 android:clickable="false"
+                android:entries="@array/department"
                 android:padding="8dp" />
 
             <android.support.design.widget.TextInputLayout
@@ -143,18 +145,33 @@
 
             <Button
                 android:id="@+id/btn_sign_up"
-                android:background="@color/colorPrimary"
-                android:padding="16dp"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Create Account" />
+                android:background="@color/colorPrimary"
+                android:padding="16dp"
+                android:text="Create Account"
+                android:textColor="@color/white" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
+    <RelativeLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_translucent_black"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
 
+        <ProgressBar
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_bar_drawable" />
 
+    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -1,26 +1,39 @@
 package afomic.com.pgpayment.ui.paystack;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.google.gson.reflect.TypeToken;
 
 import java.text.NumberFormat;
 
 import afomic.com.pgpayment.Constants;
 import afomic.com.pgpayment.R;
-import afomic.com.pgpayment.data.DbHelper;
+import afomic.com.pgpayment.helper.Common;
+import afomic.com.pgpayment.helper.SharedPreferenceManager;
 import afomic.com.pgpayment.helper.StringUtils;
 import afomic.com.pgpayment.model.Payment;
 import afomic.com.pgpayment.model.PaymentHistory;
+import afomic.com.pgpayment.model.User;
+import afomic.com.pgpayment.network.ApiService;
+import afomic.com.pgpayment.network.param.SendSmsRequest;
+import afomic.com.pgpayment.network.param.SendSmsResponse;
+import afomic.com.pgpayment.ui.otp.OtpActivity;
 import app.ephod.pentecost.library.paystack.PaymentView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WebPaymentActivity extends AppCompatActivity {
     PaymentView paymentView;
     Button button;
     Payment mPayment;
+    RelativeLayout progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +41,7 @@ public class WebPaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_payment);
         paymentView = findViewById(R.id.paymentView);
         button = paymentView.getPayButton();
+        progress = findViewById(R.id.progress_layout);
         setTitle(" Web Payment");
         mPayment = getIntent().getParcelableExtra(Constants.EXTRA_PAYMENT);
         String[] arraySpinner = new String[]{
@@ -59,19 +73,45 @@ public class WebPaymentActivity extends AppCompatActivity {
                     paymentView.hideLoader();
                     return;
                 }
-                new Handler().postDelayed(new Runnable() {
+                progress.setVisibility(View.VISIBLE);
+                SharedPreferenceManager preferenceManager = new SharedPreferenceManager(WebPaymentActivity.this);
+                String userString = preferenceManager.getStringPref(SharedPreferenceManager.PREF_USER);
+                final User user = (User) Common.parseJSONToObject(userString, TypeToken.get(User.class));
+                final String otp = StringUtils.getOTP();
+                final SendSmsRequest sendSmsRequest = new SendSmsRequest();
+                sendSmsRequest.sender = "PGPayment";
+                sendSmsRequest.recipient = user.getMobileNumber();
+                sendSmsRequest.message = "Kindly verify payment \n Otp  " + otp;
+                ApiService.getInstance(WebPaymentActivity.this).mPgPaymentApi.sendSms(sendSmsRequest).enqueue(new Callback<SendSmsResponse>() {
                     @Override
-                    public void run() {
-                        PaymentHistory paymentHistory = new PaymentHistory();
-                        paymentHistory.setAmount(mPayment.getAmount());
-                        paymentHistory.setSection(mPayment.getSection());
-                        paymentHistory.setStatus(true);
-                        paymentHistory.setTransactionId(StringUtils.getRandomString(16));
-                        DbHelper.db.getPaymentHistoryDao().insert(paymentHistory);
-                        Toast.makeText(WebPaymentActivity.this, "SuccessFull", Toast.LENGTH_SHORT).show();
-                        finish();
+                    public void onResponse(Call<SendSmsResponse> call, Response<SendSmsResponse> response) {
+                        progress.setVisibility(View.GONE);
+                        if (response.isSuccessful()) {
+                            SendSmsResponse smsResponse = response.body();
+                            if (smsResponse.code == 200) {
+
+                                PaymentHistory paymentHistory = new PaymentHistory();
+                                paymentHistory.setAmount(mPayment.getAmount());
+                                paymentHistory.setSection(mPayment.getSection());
+                                paymentHistory.setStatus(true);
+                                paymentHistory.setTransactionId(StringUtils.getRandomString(16));
+                                Intent intent = new Intent(WebPaymentActivity.this, OtpActivity.class);
+                                intent.putExtra(Constants.EXTRA_TYPE, Constants.OTP_PAYMENT_VERIFICATION);
+                                intent.putExtra(Constants.EXTRA_OTP, otp);
+                                intent.putExtra(Constants.EXTRA_PAYMENT, paymentHistory);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
                     }
-                }, 3000);
+
+                    @Override
+                    public void onFailure(Call<SendSmsResponse> call, Throwable t) {
+                        progress.setVisibility(View.VISIBLE);
+                        Toast.makeText(WebPaymentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 

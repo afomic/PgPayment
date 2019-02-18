@@ -6,4 +6,5 @@ public interface LoginView  extends BaseView {
     void notifyLoginFailed(String reason);
     void showHomeView();
     void showSignUpView();
+    void showOtpVerification(String otp);
 }

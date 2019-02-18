@@ -12,6 +12,7 @@ public class SharedPreferenceManager {
     public static final String PREF_MUTE_NOTIFICATION = "mute_notification";
     public static final String PREF_USERS = "users";
     public static final String PREF_NOTE = "note";
+    public static final String PREF_USER_VERIFIED = "verified";
 
     public SharedPreferenceManager(Context context) {
         mSharedPreferences = context.getSharedPreferences(PREFERENCE_FILE_NAME, Context.MODE_PRIVATE);

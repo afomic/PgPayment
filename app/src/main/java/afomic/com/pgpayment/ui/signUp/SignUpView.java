@@ -9,5 +9,5 @@ public interface SignUpView extends BaseView {
 
     void notifySignUpFail(String reason);
 
-    void showMainView();
+    void showOtpVerification(String otp);
 }
