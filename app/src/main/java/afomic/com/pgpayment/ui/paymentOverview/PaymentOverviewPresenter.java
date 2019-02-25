@@ -22,7 +22,9 @@ public class PaymentOverviewPresenter {
         payment.setDepartment(user.getDepartment());
         payment.setMatricNumber(user.getMatricNumber());
         int amount = FacultyHelper.getFacultySchoolFees(user.getFaculty());
-        if (!payment.getType().equals("Harmattan and rain Semester")) {
+        if (payment.getType().equals("Access Fee")) {
+            amount = 1350;
+        } else {
             amount = amount / 2;
         }
         payment.setAmount(amount);

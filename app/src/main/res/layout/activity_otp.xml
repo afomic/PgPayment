@@ -36,6 +36,14 @@
             android:background="@color/colorPrimary"
             android:text="Verify Phone number"
             android:textColor="@color/white" />
+        <Button
+            android:id="@+id/btn_resend"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_16"
+            android:background="@color/colorPrimary"
+            android:text="Resend"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <RelativeLayout

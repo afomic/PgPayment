@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import afomic.com.pgpayment.R;
+import afomic.com.pgpayment.model.PaymentHistory;
 import afomic.com.pgpayment.ui.about.AboutFragment;
 import afomic.com.pgpayment.ui.login.LoginActivity;
 import afomic.com.pgpayment.ui.paymentHistory.PaymentHistoryFragment;
@@ -116,7 +117,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showPaymentHistory() {
-
+        PaymentHistoryFragment fragment = new PaymentHistoryFragment();
+        showFragment(fragment, PaymentHistoryFragment.TAG);
     }
 
     void showAboutPage() {

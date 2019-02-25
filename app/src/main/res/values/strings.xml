@@ -27,11 +27,29 @@
         <item>2018/2019 Section</item>
     </string-array>
     <string-array name="payment_types">
-        <item>Rain Semester</item>
         <item>Harmattan Semester</item>
+        <item>Rain Semester</item>
+        <item>Access Fee</item>
     </string-array>
     <string name="naira">₦</string>
     <string name="about">This is a final year project by Ojewale Damilola AdeNike CSC/2014/127 in partial fulfilment of Bsc requirement in deparment of computer Science and Economics</string>
     <string name="verify_number">Verify Phone Number</string>
     <string name="verify_payment">Verify Payment</string>
+    <string name="welcome_email_content"><![CDATA[<body>
+    <div id="content">
+            <p style="text-align: center"><b>Dear %s</b></p>
+            <h3 style="text-align: center"> Welcome to <span style="color:brown">PGPayment</span></h3>
+            <p style="text-align: center"> Making Post graduate Tuition Payment has never been this easy</p>
+            <ul style="list-style-type:circle;">
+                 <li>We provide you easy to use interface to allow for smooth payment </li>
+                <li>We provide Two-factor Authentication to protect your </li>
+            </ul>
+    </div>
+   <div id="footer" style="text-align: center">
+        <p>&copy; PGPayment 2019. All Rights</p>
+   </div>
+
+
+</body>]]></string>
+
 </resources>

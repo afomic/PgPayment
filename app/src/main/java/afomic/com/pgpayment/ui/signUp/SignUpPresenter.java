@@ -1,5 +1,8 @@
 package afomic.com.pgpayment.ui.signUp;
 
+import android.content.Context;
+
+import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.helper.FacultyHelper;
 import afomic.com.pgpayment.helper.StringUtils;
@@ -18,11 +21,13 @@ public class SignUpPresenter {
     private SignUpView mSignUpView;
     private String[] departmentList = {};
     private ApiService mApiService;
+    private Context mContext;
 
-    public SignUpPresenter(SignUpView signUpView, AuthManger authManger, ApiService apiService) {
+    public SignUpPresenter(SignUpView signUpView, AuthManger authManger, Context context) {
         mSignUpView = signUpView;
         mAuthManger = authManger;
-        mApiService = apiService;
+        mContext = context;
+        mApiService = ApiService.getInstance(context);
         signUpView.initView();
         signUpView.initListeners();
 
@@ -53,6 +58,10 @@ public class SignUpPresenter {
             mSignUpView.notifySignUpFail("Please provide a last name");
             return;
         }
+        if (!StringUtils.isValidPassword(user.getPassword())) {
+            mSignUpView.notifySignUpFail("Please provide a valid password");
+            return;
+        }
         if (StringUtils.isEmpty(user.getMobileNumber()) || user.getMobileNumber().length() != 13) {
             mSignUpView.notifySignUpFail("Please provide a valid phone number");
             return;
@@ -68,7 +77,7 @@ public class SignUpPresenter {
                 final String otp = StringUtils.getOTP();
                 final SendSmsRequest sendSmsRequest = new SendSmsRequest();
                 sendSmsRequest.sender = "PGPayment";
-                sendSmsRequest.recipient = user.getMobileNumber();
+                sendSmsRequest.recipient = "+" + user.getMobileNumber();
                 sendSmsRequest.message = "Kindly verified your number \n Otp  " + otp;
                 mApiService.mPgPaymentApi.sendSms(sendSmsRequest).enqueue(new Callback<SendSmsResponse>() {
                     @Override
@@ -79,7 +88,7 @@ public class SignUpPresenter {
                             if (smsResponse.code == 200) {
                                 mSignUpView.showOtpVerification(otp);
 
-                            }else {
+                            } else {
                                 mSignUpView.notifySignUpFail("Sign up failed try again");
                             }
                         }
@@ -95,7 +104,7 @@ public class SignUpPresenter {
                 request.from = "PGPayment";
                 request.to = user.getEmail();
                 request.subject = "Welcome to PGPayment";
-                request.html = "<p> Welcome to PGPayment</p>";
+                request.html = String.format(mContext.getString(R.string.welcome_email_content), user.getFirstName());
                 mApiService.mPgPaymentApi.sendMail(request).enqueue(new Callback<SendEmailResponse>() {
                     @Override
                     public void onResponse(Call<SendEmailResponse> call, Response<SendEmailResponse> response) {

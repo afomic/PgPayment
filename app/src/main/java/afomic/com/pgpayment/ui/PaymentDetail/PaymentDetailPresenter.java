@@ -24,7 +24,8 @@ public class PaymentDetailPresenter {
         }
     }
 
-    public void handleMakePayment() {
+    public void handleMakePayment(String amount) {
+        currentPayment.setAmount(Integer.parseInt(amount));
         mPaymentDetailView.showPaystackView(currentPayment);
     }
 }

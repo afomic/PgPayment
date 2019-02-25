@@ -16,7 +16,6 @@ import afomic.com.pgpayment.Constants;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.helper.AuthManger;
 import afomic.com.pgpayment.model.User;
-import afomic.com.pgpayment.network.ApiService;
 import afomic.com.pgpayment.ui.otp.OtpActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
-        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance(), ApiService.getInstance(SignUpActivity.this));
+        mSignUpPresenter = new SignUpPresenter(this, AuthManger.getInstance(), SignUpActivity.this);
 
     }
 

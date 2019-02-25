@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import afomic.com.pgpayment.Constants;
@@ -17,7 +18,7 @@ import butterknife.OnClick;
 
 public class PaymentDetailActivity extends AppCompatActivity implements PaymentDetailView {
     @BindView(R.id.tv_amount)
-    TextView amountTextView;
+    EditText amountTextView;
     @BindView(R.id.tv_department)
     TextView departmentTextView;
     @BindView(R.id.tv_faculty)
@@ -41,7 +42,7 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
 
     @OnClick(R.id.btn_make_payment)
     public void makePaymentButtonClick() {
-        mPaymentDetailPresenter.handleMakePayment();
+        mPaymentDetailPresenter.handleMakePayment(amountTextView.getText().toString());
     }
 
     @Override
@@ -49,7 +50,7 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
         matricNumberTextView.setText(payment.getMatricNumber());
         sectionTextView.setText(payment.getSection());
         facultyTextView.setText(payment.getFaculty());
-        String amount = getString(R.string.naira) + payment.getAmount();
+        String amount = String.valueOf(payment.getAmount());
         amountTextView.setText(amount);
         departmentTextView.setText(payment.getDepartment());
         paymentTypeTextView.setText(payment.getType());

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.PaymentSuccessfulActivity"></activity>
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.signUp.SignUpActivity" />
         <activity android:name=".ui.login.LoginActivity" />
@@ -26,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.paystack.WebPaymentActivity" />
-        <activity android:name=".ui.otp.OtpActivity"></activity>
+        <activity android:name=".ui.otp.OtpActivity" />
     </application>
 
 </manifest>

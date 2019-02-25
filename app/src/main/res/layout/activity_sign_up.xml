@@ -42,7 +42,7 @@
                     android:id="@+id/edt_matric_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Matric Number" />
+                    android:hint="Reg Number" />
             </android.support.design.widget.TextInputLayout>
 
 

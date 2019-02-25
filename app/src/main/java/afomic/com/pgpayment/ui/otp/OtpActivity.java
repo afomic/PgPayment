@@ -11,16 +11,27 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
+import com.google.gson.reflect.TypeToken;
 
 import afomic.com.pgpayment.Constants;
+import afomic.com.pgpayment.PGPayment;
 import afomic.com.pgpayment.R;
 import afomic.com.pgpayment.data.DbHelper;
+import afomic.com.pgpayment.helper.Common;
 import afomic.com.pgpayment.helper.SharedPreferenceManager;
 import afomic.com.pgpayment.model.PaymentHistory;
-import afomic.com.pgpayment.ui.main.MainActivity;
+import afomic.com.pgpayment.model.User;
+import afomic.com.pgpayment.network.ApiService;
+import afomic.com.pgpayment.network.param.SendSmsRequest;
+import afomic.com.pgpayment.network.param.SendSmsResponse;
+import afomic.com.pgpayment.ui.PaymentSuccessfulActivity;
+import afomic.com.pgpayment.ui.login.LoginActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OtpActivity extends AppCompatActivity {
     @BindView(R.id.pin_layout)
@@ -39,7 +50,7 @@ public class OtpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_otp);
         ButterKnife.bind(this);
 
-        InputMethodManager imm = (InputMethodManager)   getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         otp = getIntent().getStringExtra(Constants.EXTRA_OTP);
@@ -57,16 +68,59 @@ public class OtpActivity extends AppCompatActivity {
     @OnClick(R.id.btn_verify)
     public void verifyOtp() {
         progress.setVisibility(View.VISIBLE);
-        if (type == Constants.OTP_USER_VERIFICATION) {
-            SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(OtpActivity.this);
-            sharedPreferenceManager.saveBooleanPref(SharedPreferenceManager.PREF_USER_VERIFIED, true);
-            Intent intent = new Intent(OtpActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+        String enteredOtp = mPinEntryEditText.getText().toString();
+        if (enteredOtp.equals(otp)) {
+            if (type == Constants.OTP_USER_VERIFICATION) {
+                SharedPreferenceManager sharedPreferenceManager = new SharedPreferenceManager(OtpActivity.this);
+                sharedPreferenceManager.saveBooleanPref(SharedPreferenceManager.PREF_USER_VERIFIED, true);
+                Intent intent = new Intent(OtpActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                DbHelper.db.getPaymentHistoryDao().insert(paymentHistory);
+                Toast.makeText(OtpActivity.this, "SuccessFull", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OtpActivity.this, PaymentSuccessfulActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
         } else {
-            DbHelper.db.getPaymentHistoryDao().insert(paymentHistory);
-            Toast.makeText(OtpActivity.this, "SuccessFull", Toast.LENGTH_SHORT).show();
-            finish();
+            progress.setVisibility(View.GONE);
+            Toast.makeText(OtpActivity.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    @OnClick(R.id.btn_resend)
+    public void resendOtp() {
+        progress.setVisibility(View.VISIBLE);
+        final SendSmsRequest sendSmsRequest = new SendSmsRequest();
+        sendSmsRequest.sender = "PGPayment";
+        SharedPreferenceManager sharedPreferenceManager= new SharedPreferenceManager(OtpActivity.this);
+        String userString = sharedPreferenceManager.getStringPref(SharedPreferenceManager.PREF_USER);
+        final User user = (User) Common.parseJSONToObject(userString, TypeToken.get(User.class));
+        sendSmsRequest.recipient = "+" + user.getMobileNumber();
+        sendSmsRequest.message = "Kindly verified your number \n Otp  " + otp;
+        ApiService.getInstance(OtpActivity.this).mPgPaymentApi.sendSms(sendSmsRequest).enqueue(new Callback<SendSmsResponse>() {
+            @Override
+            public void onResponse(Call<SendSmsResponse> call, Response<SendSmsResponse> response) {
+                progress.setVisibility(View.GONE);
+                if (response.isSuccessful()) {
+                    SendSmsResponse smsResponse = response.body();
+                    if (smsResponse.code == 200) {
+                        Toast.makeText(OtpActivity.this,"Sent",Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(OtpActivity.this,"Failed to send OTP",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SendSmsResponse> call, Throwable t) {
+                Toast.makeText(OtpActivity.this,"Failed to send OTP",Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+            }
+        });
     }
 }
